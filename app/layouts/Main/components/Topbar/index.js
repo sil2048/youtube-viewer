@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { memo } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import injectSheet from 'react-jss';
@@ -8,8 +9,6 @@ import injectSheet from 'react-jss';
 import { compose } from 'redux';
 import auth from 'utils/auth';
 import { resetLogin } from 'containers/SignIn/services';
-
-import { ReactComponent as Logo } from '../../../../assets/images/logo.svg';
 
 // Component styles
 import styles from './styles';
@@ -25,11 +24,7 @@ const Topbar = props => {
 
   return (
     <div className={classes.header}>
-      <div className={classes.logo}>
-        <Link to="/">
-          <Logo />
-        </Link>
-      </div>
+      <div className={classes.logo}>Sil's YTV</div>
       <div className={classes.topRight}>
         <button
           className={classes.signOutButton}

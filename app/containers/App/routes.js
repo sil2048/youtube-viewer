@@ -16,26 +16,8 @@ const Routes = [
     title: 'Home',
     path: '/',
     exact: true,
-    private: false,
+    private: true,
     component: loadable(() => import('containers/Home'), {
-      fallback: <LoadingIndicator />,
-    }),
-  },
-  {
-    title: 'Posts',
-    path: '/posts',
-    exact: true,
-    private: true,
-    component: loadable(() => import('containers/Posts'), {
-      fallback: <LoadingIndicator />,
-    }),
-  },
-  {
-    title: 'Detail',
-    path: '/posts/:id',
-    exact: false,
-    private: true,
-    component: loadable(() => import('containers/Posts/Detail'), {
       fallback: <LoadingIndicator />,
     }),
   },

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 
-import { Sidebar, Topbar, Footer } from './components';
+import { Topbar, Footer } from './components';
 
 const withStyles = injectSheet({
   mainContainer: {
@@ -27,7 +27,6 @@ function Main(props) {
     <>
       <Topbar />
       <div className={classes.mainContainer}>
-        <Sidebar />
         <main className={classes.content}>
           {children}
           <Footer />

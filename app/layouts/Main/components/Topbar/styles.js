@@ -10,9 +10,11 @@ const styles = {
   },
   logo: {
     float: 'left',
-    background: '#fff',
+    color: '#fff',
     padding: 10,
     margin: 10,
+    fontWeight: 'bold',
+    fontSize: '1.3em',
     borderRadius: 5,
   },
   topRight: {
