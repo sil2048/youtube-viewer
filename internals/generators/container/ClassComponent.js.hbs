@@ -1,0 +1,122 @@
+/**
+ *
+ * {{properCase name }}
+ *
+ */
+
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+{{#if wantHeaders}}
+import { Helmet } from 'react-helmet';
+{{/if}}
+{{#if wantMessages}}
+import { FormattedMessage } from 'react-intl';
+{{/if}}
+{{#if wantActionsAndReducer}}
+import PropTypes from 'prop-types';
+import { createStructuredSelector } from 'reselect';
+{{/if}}
+import { compose } from 'redux';
+
+{{#if wantJss}}
+import { withStyles } from '@material-ui/core';
+{{/if}}
+
+{{#if wantSaga}}
+import { useInjectSaga } from 'utils/injectSaga';
+{{/if}}
+{{#if wantActionsAndReducer}}
+import { useInjectReducer } from 'utils/injectReducer';
+{{/if}}
+
+{{#if wantActionsAndReducer}}
+import {
+  {{#if wantSaga}}
+  saga,
+  {{/if}}
+  reducer,
+  key,
+  defaultAction,
+  makeSelect{{properCase name}}Data
+} from './services';
+{{else}}
+{{#if wantSaga}}import{ saga, key } from './services';{{/if}}
+{{/if}}
+
+{{#if wantJss}}
+import styles from './styles';
+{{/if}}
+
+{{#if wantMessages}}
+import messages from './messages';
+{{/if}}
+
+// eslint-disable-next-line react/prefer-stateless-function
+export class {{ properCase name }} extends Component {
+  render(){
+    return (
+      <div>
+      {{#if wantHeaders}}
+        <Helmet>
+          <title>{{properCase name}}</title>
+          <meta name="description" content="Description of {{properCase name}}" />
+        </Helmet>
+      {{/if}}
+      {{#if wantMessages}}
+        <FormattedMessage {...messages.header} />
+      {{/if}}
+      </div>
+    );
+  }
+}
+
+{{ properCase name }}.propTypes = {
+  {{#if wantActionsAndReducer}}
+  {{ camelCase name }}Data: PropTypes.object.isRequired,
+  {{/if}}
+};
+
+{{#if wantActionsAndReducer}}
+const mapStateToProps = createStructuredSelector({
+  {{ camelCase name }}Data: makeSelect{{properCase name}}Data(),
+});
+{{/if}}
+
+const mapDispatchToProps = {
+  {{#if wantActionsAndReducer}}
+  onDefaultAction: defaultAction,
+  {{/if}}
+};
+
+{{#if wantActionsAndReducer}}
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+{{else}}
+const withConnect = connect(null, mapDispatchToProps);
+{{/if}}
+
+{{#if wantActionsAndReducer}}
+const withReducer = useInjectReducer({ key, reducer });
+{{/if}}
+{{#if wantSaga}}
+const withSaga = useInjectSaga({ key, saga });
+{{/if}}
+
+{{#if wantJss}}
+const withStyle = withStyles(styles);
+{{/if}}
+
+export default compose(
+  {{#if wantActionsAndReducer}}
+  withReducer,
+  {{/if}}
+  {{#if wantSaga}}
+  withSaga,
+  {{/if}}
+  withConnect,
+  {{#if wantJss}}
+  withStyle,
+  {{/if}}
+)({{ properCase name }});

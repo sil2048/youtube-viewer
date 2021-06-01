@@ -1,0 +1,17 @@
+import { createSelector } from 'reselect';
+import { initialState } from './reducer';
+import { key } from './constants';
+
+const {{ properCase name }}Selector = state => state[key] || initialState;
+
+/**
+ * Default selector used by {{ properCase name }}
+ */
+
+const makeSelect{{ properCase name }}Data = () =>
+  createSelector(
+    {{ properCase name }}Selector,
+    substate => substate.{{ properCase name }}Data,
+  );
+
+export { makeSelect{{ properCase name }}Data };

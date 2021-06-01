@@ -1,0 +1,23 @@
+import React from 'react';
+import injectSheet from 'react-jss';
+import PropTypes from 'prop-types';
+import Loading from 'components/Loading';
+
+import styles from './styles';
+
+const withStyles = injectSheet(styles);
+
+function ComponentLoading(props) {
+  const { classes } = props;
+  return (
+    <div className={`${classes.root} ${classes.loading}`}>
+      <Loading size="medium" colors={['#828DF1', null, '#9ECDEF']} />
+    </div>
+  );
+}
+
+ComponentLoading.propTypes = {
+  classes: PropTypes.object,
+};
+
+export default withStyles(ComponentLoading);

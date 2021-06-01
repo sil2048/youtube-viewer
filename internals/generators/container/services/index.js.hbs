@@ -1,0 +1,32 @@
+
+/*
+ *
+ * {{ properCase name }} services
+ *
+ */
+
+{{#if wantSaga}}
+import saga from './saga';
+{{/if}}
+{{#if wantActionsAndReducer}}
+import { key } from './constants';
+import reducer from './reducer';
+import { defaultAction } from './actions';
+import { makeSelect{{ properCase name }}Data } from './selectors';
+{{else}}
+import { key } from './constants';
+{{/if}}
+
+export {
+  {{#if wantSaga}}
+  saga,
+  {{/if}}
+  {{#if wantActionsAndReducer}}
+  key,
+  reducer,
+  defaultAction,
+  makeSelect{{ properCase name }}Data,
+  {{else}}
+  key,
+  {{/if}}
+};
